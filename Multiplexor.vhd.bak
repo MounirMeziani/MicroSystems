@@ -1,0 +1,109 @@
+LIBRARY ieee;
+USE ieee.std_logic_1164.ALL;
+USE ieee.std_logic_arith.ALL;
+USE ieee.std_logic_unsigned.ALL;
+
+ENTITY Multiplexor IS
+Port(
+R0_busmuxin : IN STD_LOGIC_VECTOR(31 DOWNTO 0);
+R1_busmuxin : IN STD_LOGIC_VECTOR(31 DOWNTO 0);
+R2_busmuxin : IN STD_LOGIC_VECTOR(31 DOWNTO 0);
+R3_busmuxin : IN STD_LOGIC_VECTOR(31 DOWNTO 0);
+R4_busmuxin : IN STD_LOGIC_VECTOR(31 DOWNTO 0);
+R5_busmuxin : IN STD_LOGIC_VECTOR(31 DOWNTO 0);
+R6_busmuxin : IN STD_LOGIC_VECTOR(31 DOWNTO 0);
+R7_busmuxin : IN STD_LOGIC_VECTOR(31 DOWNTO 0);
+R8_busmuxin : IN STD_LOGIC_VECTOR(31 DOWNTO 0);
+R9_busmuxin : IN STD_LOGIC_VECTOR(31 DOWNTO 0);
+R10_busmuxin : IN STD_LOGIC_VECTOR(31 DOWNTO 0);
+R11_busmuxin : IN STD_LOGIC_VECTOR(31 DOWNTO 0);
+R12_busmuxin : IN STD_LOGIC_VECTOR(31 DOWNTO 0);
+R13_busmuxin : IN STD_LOGIC_VECTOR(31 DOWNTO 0);
+R14_busmuxin : IN STD_LOGIC_VECTOR(31 DOWNTO 0);
+R15_busmuxin : IN STD_LOGIC_VECTOR(31 DOWNTO 0);
+HI_busmuxin : IN STD_LOGIC_VECTOR(31 DOWNTO 0);
+LO_busmuxin : IN STD_LOGIC_VECTOR(31 DOWNTO 0);
+Z_HI_busmuxin : IN STD_LOGIC_VECTOR(31 DOWNTO 0);
+Z_low_busmuxin : IN STD_LOGIC_VECTOR(31 DOWNTO 0);
+MDR_busmuxin : IN STD_LOGIC_VECTOR(31 DOWNTO 0);
+PC_busmuxin : IN STD_LOGIC_VECTOR(31 DOWNTO 0);
+C_signextended: IN STD_LOGIC_VECTOR(31 DOWNTO 0);
+In_port_busmuxin: IN STD_LOGIC_VECTOR(31 DOWNTO 0);
+BusMuxOut: out std_LOGIC_VECTOR (31 downto 0);
+
+a: IN STD_LOGIC
+);
+END entity Multiplexor;
+
+
+ARCHITECTURE description OF Multiplexor IS
+BEGIN
+
+
+
+	 
+busmux : process(R0_busmuxin,R1_busmuxin,R2_busmuxin,R3_busmuxin,R4_busmuxin,R5_busmuxin,
+						R6_busmuxin,R7_busmuxin,R8_busmuxin,R9_busmuxin,R10_busmuxin,R11_busmuxin,
+						R12_busmuxin,R13_busmuxin,R14_busmuxin,R15_busmuxin,HI_busmuxin,LO_busmuxin
+						,Z_HI_busmuxin,Z_low_busmuxin,PC_busmuxin,MDR_busmuxin,In_port_busmuxin,C_signextended,a)
+begin
+			
+			
+			if a = '0' then 
+			  BusMuxOut <= R0_busmuxin; 
+			elsif a = '1' then
+			  BusMuxOut <=R1_busmuxin;
+			elsif a = '2' then 
+			  BusMuxOut <=R2_busmuxin;
+			elsif a ='3' then 
+			  BusMuxOut <=R3_busmuxin;
+			elsif a = '3' then 
+			  BusMuxOut <=R4_busmuxin;
+			elsif a ='4' then 
+			  BusMuxOut <=R5_busmuxin;
+			elsif a ='5' then 
+			  BusMuxOut <=R6_busmuxin;
+			elsif a ='6' then 
+			  BusMuxOut <=R7_busmuxin;
+			elsif a ='7' then 
+			  BusMuxOut <=R8_busmuxin;
+			elsif a ='8' then 
+			  BusMuxOut <=R9_busmuxin; 
+			elsif a ='9' then 
+			  BusMuxOut <= R10_busmuxin;
+			elsif a ='10' then 
+			  BusMuxOut <=R11_busmuxin;
+			elsif a ='11' then
+			  BusMuxOut <=R12_busmuxin;
+			elsif a ='12' then 
+			  BusMuxOut <=R13_busmuxin; 
+			elsif a ='13' then 
+			  BusMuxOut <=R14_busmuxin;
+			elsif a ='14' then 
+			  BusMuxOut <=R15_busmuxin; 
+			elsif a ='15' then 
+			  BusMuxOut <=HI_busmuxin;
+			elsif a ='16' then
+			  BusMuxOut <=LO_busmuxin;
+			elsif a ='17' then 
+			  BusMuxOut <=Z_HI_busmuxin;
+			elsif a ='18' then 
+			  BusMuxOut <=Z_low_busmuxin;
+			elsif a ='19' then 
+			  BusMuxOut <=PC_busmuxin;
+			elsif a ='20' then 
+			  BusMuxOut <=MDR_busmuxin;
+			elsif a ='21' then 
+			  BusMuxOut <=In_port_busmuxin;
+			elsif a = '22' then
+			  BusMuxOut <=C_signextended;
+			else
+			  BusMuxOut <= 'ZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZ';
+			end if;
+end process;
+
+
+
+
+	 
+END description;

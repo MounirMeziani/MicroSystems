@@ -1,0 +1,13 @@
+
+module Shift(
+	input[1:0] direction,
+	input [31:0] valIn,
+	input [31:0] AmountMove,
+	output wire [31:0] Res
+);
+
+	if (direction == '1') 
+		assign Res = (val >> AmountMove);
+	else 
+		assign Res = (val << AmountMove);
+endmodule

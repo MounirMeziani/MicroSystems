@@ -1,0 +1,67 @@
+LIBRARY ieee;
+USE ieee.std_logic_1164.all;
+
+LIBRARY lpm;
+USE lpm.all;
+
+ENTITY DividingBlock IS
+	PORT
+	(
+		divisor		: IN STD_LOGIC_VECTOR (31 DOWNTO 0);
+		dividend		: IN STD_LOGIC_VECTOR (31 DOWNTO 0);
+		Remainder	: OUT STD_LOGIC_VECTOR (31 DOWNTO 0);
+		remain		: OUT STD_LOGIC_VECTOR (31 DOWNTO 0)
+	);
+END DividingBlock;
+
+
+ARCHITECTURE behavior OF DividingBlock IS
+
+	SIGNAL sub_wire0	: STD_LOGIC_VECTOR (31 DOWNTO 0);
+	SIGNAL sub_wire1	: STD_LOGIC_VECTOR (31 DOWNTO 0);
+
+
+
+	COMPONENT DividingBlock
+	GENERIC (
+		lpm_drepresentation		: STRING;
+		lpm_hint						: STRING;
+		lpm_nrepresentation		: STRING;
+		lpm_type						: STRING;
+		lpm_widthd					: NATURAL;
+		lpm_widthn					: NATURAL
+	);
+	PORT (
+			divisor		: IN STD_LOGIC_VECTOR (31 DOWNTO 0);
+			dividend		: IN STD_LOGIC_VECTOR (31 DOWNTO 0);
+			Remainder	: OUT STD_LOGIC_VECTOR (31 DOWNTO 0);
+			remain		: OUT STD_LOGIC_VECTOR (31 DOWNTO 0)
+	);
+	END COMPONENT;
+
+BEGIN
+
+	Remainder    <= sub_wire0(31 DOWNTO 0);
+	remain       <= sub_wire1(31 DOWNTO 0);
+
+	DividingBlock_component : DividingBlock
+	
+	GENERIC MAP (
+		lpm_drepresentation => "SIGNED",
+		lpm_hint => "DividingBlock_REMAINDERPOSITIVE=TRUE",
+		lpm_nrepresentation => "SIGNED",
+		lpm_type => "LPM_DIVIDE",
+		lpm_widthd => 32,
+		lpm_widthn => 32
+	)
+	PORT MAP (
+	--note: changed order for testing divisor and divdened may need to be changed
+		dividend => dividend,
+		divisor => divisor,
+		Remainder => sub_wire0,
+		remain => sub_wire1
+	);
+
+
+
+END behavior;
