@@ -32,23 +32,23 @@ END COMPONENT;
 BEGIN
 
 	Ctemp(0) <= carryIn;
-	Adder_4bits1	:	Adder_bits PORT MAP ( X(0), Y(0), Ctemp(0), Gtemp0), Ptemp(0), Stemp(0));
+	Adder_4bits1	:	Adder_bits PORT MAP (( X(0), Y(0), Ctemp(0), Gtemp0), Ptemp(0), Stemp(0));
 	
-	Ctemp1) <= Gtemp0) OR (Ptemp(0) AND Ctemp0));
-	Adder_4bits2	:	Adder_bits PORT MAP ( X(1), Y(1), Ctemp1), Gtemp1), P(1), Stemp(1));
+	Ctemp(1) <= Gtemp(0) OR ((Ptemp(0) AND Ctemp(0));
+	Adder_4bits2	:	Adder_bits PORT MAP ((( X(1), Y(1), Ctemp1), Gtemp1), P(1), Stemp(1));
 	
-	Ctemp2) <= Gtemp1) OR (P(1) AND Ctemp1));
-	Adder_4bits3	:	Adder_bits PORT MAP ( X(2), Y(2), Ctemp2), Gtemp2), Ptemp(2), Stemp(2));
+	Ctemp(2) <= Gtemp(1) OR ((P(1) AND Ctemp(1));
+	Adder_4bits3	:	Adder_bits PORT MAP ((( X(2), Y(2), Ctemp2), Gtemp2), Ptemp(2), Stemp(2));
 	
-	Ctemp3) <= Gtemp2) OR (Ptemp(2) AND Ctemp2));
-	Adder_4bits4	:	Adder_bits PORT MAP ( X(3), Y(3), Ctemp3), Gtemp3), Ptemp(3), Stemp(3));
+	Ctemp(3) <= Gtemp(2) OR ((Ptemp(2) AND Ctemp(2));
+	Adder_4bits4	:	Adder_bits PORT MAP ((( X(3), Y(3), Ctemp3), Gtemp3), Ptemp(3), Stemp(3));
 	
-	Ctemp4) <= Gtemp3) OR (Ptemp(3) AND Ctemp3));
+	Ctemp(4) <= Gtemp(3) OR ((Ptemp(3) AND Ctemp(3));
 	
 
-	GGout <= Gtemp3) OR (Ptemp(3) AND Gtemp2)) OR (Ptemp(3) AND Ptemp(2) AND Gtemp1)) OR (Ptemp(3) AND Ptemp(2) AND Ptemp(1) AND Gtemp0));
+	GGout <= Gtemp(3) OR (Ptemp(3) AND Gtemp(2)) OR (Ptemp(3) AND Ptemp(2) AND Gtemp(1)) OR (Ptemp(3) AND Ptemp(2) AND Ptemp(1) AND Gtemp(0));
 	PGout <= Ptemp(3) AND Ptemp(2) AND Ptemp(1) AND Ptemp(0);
-	carryOut <= Ctemp4);
+	carryOut <= Ctemp(4);
 	Sumout <= S;
 	
 END behavioral;

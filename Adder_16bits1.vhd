@@ -92,7 +92,7 @@ BEGIN
 														  Stemp3);
 	Adder_16bits4	:	Adder_4bits1 PORT MAP( X_part4,
 														  Y_part4, 
-														  Ctemp4, 
+														  Ctemp3, 
 														  Gtemp(3), 
 														  Ptemp(3), 
 														  Ctemp4, 

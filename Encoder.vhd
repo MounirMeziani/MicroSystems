@@ -66,7 +66,7 @@ ARCHITECTURE description OF Encoder IS
 
 BEGIN
 
-encoder : process(R0_out, R1_out, R2_out,R3_out ,R4_out,R5_out,R6_out, R7_out,R8_out,R9_out,R10_out, R11_out,R12_out,R13_out,R14_out,R15_out, MDR_out ,HI_out, LO_out, Z_high_out, PC_out, C_out)
+encoder : process(In_port_out, Z_low_out, R0_out, R1_out, R2_out,R3_out ,R4_out,R5_out,R6_out, R7_out,R8_out,R9_out,R10_out, R11_out,R12_out,R13_out,R14_out,R15_out, MDR_out ,HI_out, LO_out, Z_high_out, PC_out, C_out)
 begin
 
 			if R0_out = '1' then

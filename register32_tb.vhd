@@ -20,7 +20,7 @@ SIGNAL q_tb :  STD_LOGIC_VECTOR(31 DOWNTO 0); -- output
  PORT (
 d : IN STD_LOGIC_VECTOR(31 DOWNTO 0); -- input
 le : IN STD_LOGIC; -- load/enable
-clr : IN STD_LOGIC; -- clear
+clr : IN STD_LOGIC; -- clea
 clk : IN STD_LOGIC; -- clock
 q : OUT STD_LOGIC_VECTOR(31 DOWNTO 0)); -- output
  END COMPONENT register32;

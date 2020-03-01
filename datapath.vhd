@@ -95,10 +95,9 @@ ENTITY datapath IS
 		X_out1 :  OUT  STD_LOGIC_VECTOR(31 DOWNTO 0);
 		X_out2 :  OUT  STD_LOGIC_VECTOR(31 DOWNTO 0);
 		X_Result : OUT STD_LOGIC_VECTOR(31 DOWNTO 0);
-		R2_busmuxin : STD_LOGIC_VECTOR(31 DOWNTO 0);
-		R4_busmuxin : STD_LOGIC_VECTOR(31 DOWNTO 0);
-		R5_busmuxin : STD_LOGIC_VECTOR(31 DOWNTO 0)
 		
+	
+	Zout : STD_LOGIC_VECTOR(63 DOWNTO 0)
 	);
 END datapath;
 
@@ -151,7 +150,7 @@ COMPONENT encoder
 	);
 END COMPONENT;
 
-COMPONENT gpregisterblock
+COMPONENT GPRegisterblock
 	PORT(R0_in : IN STD_LOGIC;
 		 R1_in : IN STD_LOGIC;
 		 R2_in : IN STD_LOGIC;
@@ -187,6 +186,7 @@ COMPONENT gpregisterblock
 		 R7_busmuxin : OUT STD_LOGIC_VECTOR(31 DOWNTO 0);
 		 R8_busmuxin : OUT STD_LOGIC_VECTOR(31 DOWNTO 0);
 		 R9_busmuxin : OUT STD_LOGIC_VECTOR(31 DOWNTO 0)
+		 
 	);
 END COMPONENT;
 
@@ -198,7 +198,7 @@ COMPONENT mdmux
 	);
 END COMPONENT;
 
-COMPONENT alu_tb
+COMPONENT ALU
 	PORT(ADD : IN STD_LOGIC;
 		 SUB : IN STD_LOGIC;
 		 ANDop : IN STD_LOGIC;
@@ -401,7 +401,7 @@ PORT MAP(mem_read => Read_mem,
 		 mem_mux_out => SYNTHESIZED_WIRE_9);
 
 
-b2v_inst9 : alu_tb
+b2v_inst9 : ALU
 PORT MAP(ADD => ADD_op,
 		 SUB => SUB_op,
 		 ANDop => AND_op,

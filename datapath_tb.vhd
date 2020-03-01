@@ -23,6 +23,26 @@ SIGNAL Clock_tb: std_logic;
 SIGNAL Mdatain_tb : std_logic_vector (31 downto 0);
 SIGNAL X_out1_tb : std_logic_vector (31 downto 0);
 SIGNAL R2_busmuxin_tb, R4_busmuxin_tb,R5_busmuxin_tb : std_logic_vector (31 downto 0);
+SIGNAL Zout_tb : std_logic_vector (63 downto 0);
+
+
+SIGNAL R0_busmuxin :  STD_LOGIC_VECTOR(31 DOWNTO 0);
+SIGNAL R1_busmuxin :  STD_LOGIC_VECTOR(31 DOWNTO 0);
+SIGNAL R2_busmuxin :  STD_LOGIC_VECTOR(31 DOWNTO 0);
+SIGNAL R3_busmuxin :  STD_LOGIC_VECTOR(31 DOWNTO 0);
+SIGNAL R4_busmuxin :  STD_LOGIC_VECTOR(31 DOWNTO 0);
+SIGNAL R5_busmuxin :  STD_LOGIC_VECTOR(31 DOWNTO 0);
+SIGNAL R6_busmuxin :  STD_LOGIC_VECTOR(31 DOWNTO 0);
+SIGNAL R7_busmuxin :  STD_LOGIC_VECTOR(31 DOWNTO 0);
+SIGNAL R8_busmuxin :  STD_LOGIC_VECTOR(31 DOWNTO 0);
+SIGNAL R9_busmuxin :  STD_LOGIC_VECTOR(31 DOWNTO 0);
+SIGNAL R10_busmuxin :  STD_LOGIC_VECTOR(31 DOWNTO 0);
+SIGNAL R11_busmuxin :  STD_LOGIC_VECTOR(31 DOWNTO 0);
+SIGNAL R12_busmuxin :  STD_LOGIC_VECTOR(31 DOWNTO 0);
+SIGNAL R13_busmuxin :  STD_LOGIC_VECTOR(31 DOWNTO 0);
+SIGNAL R14_busmuxin :  STD_LOGIC_VECTOR(31 DOWNTO 0);
+SIGNAL R15_busmuxin :  STD_LOGIC_VECTOR(31 DOWNTO 0);
+
 
 --SIGNAL InterOUT_tb :  STD_LOGIC_VECTOR(31 DOWNTO 0);
 
@@ -50,7 +70,9 @@ COMPONENT datapath
 		--InterOUT : OUT STD_LOGIC_VECTOR(31 DOWNTO 0);
 		
 		X_out1 : out std_logic_vector (31 downto 0);
-		R2_busmuxin, R4_busmuxin,R5_busmuxin : std_logic_vector (31 downto 0)
+		
+		Zout : std_logic_vector (63 downto 0)
+
 		);
 END COMPONENT datapath;
 
@@ -131,10 +153,8 @@ BEGIN --begin for architecture
 		X_CSign => X_CSign_tb,
 		X_inPort => X_inPort_tb,
 		X_out1 => X_out1_tb,
-		R2_busmuxin =>R2_busmuxin_tb, 
-		R4_busmuxin =>R4_busmuxin_tb,
-		R5_busmuxin =>R5_busmuxin_tb
 		
+		Zout => Zout_tb
 		);
 
 	--add test logic here
@@ -143,7 +163,7 @@ BEGIN --begin for architecture
 	Clock_process: PROCESS IS
 	BEGIN
 		Clock_tb <= '1', '0' after 15 ns;
-		Wait for 30 ns;
+		Wait for 30ns;
 	END PROCESS Clock_process;
 
 
@@ -195,12 +215,18 @@ BEGIN --begin for architecture
 				Mdatain_tb <= x"00000022";
 				Read_mem_tb <= '0', '1' after 10 ns, '0' after 35ns; -- the first zero is there for completeness
 				MDRin_tb <= '0', '1' after 10 ns, '0' after 35ns;
-			WHEN Reg_load1b =>
+				
 				MDRout_tb <= '1' after 10 ns, '0' after 35ns;
+				
+			
+			WHEN Reg_load1b =>
 				R2in_tb <= '1' after 10 ns, '0' after 35ns; -- initialize R2 with the value $22
+				R8in_tb <= '1' after 10 ns, '0' after 35ns;
+				R11in_tb <= '1' after 10 ns, '0' after 35ns;
+				
 			WHEN Reg_load2a =>
 				Mdatain_tb <= x"00000024";
-				Read_mem_tb <= '1' after 10 ns, '0' after 35ns;
+				Read_mem_tb <= '1' after 10 ns;
 				MDRin_tb <= '1' after 10 ns, '0' after 35ns;
 			WHEN Reg_load2b =>
 				MDRout_tb <= '1' after 10 ns, '0' after 35ns;
@@ -218,7 +244,7 @@ BEGIN --begin for architecture
 				Zlowout_tb <= '1', '0' after 35ns; PCin_tb <= '1' after 5ns, '0' after 35ns; Read_mem_tb <= '1' after 5ns, '0' after 35ns; MDRin_tb <= '1' after 5ns, '0' after 35ns;
 				Mdatain_tb <= x"4A920000"; -- CHANGE opcode, Ã¢â‚¬Å“or R5, R2, R4Ã¢â‚¬Â is x"52920000"
 			WHEN T2 =>
-				MDRout_tb <= '1', '0' after 35ns; IRin_tb <= '1', '0' after 35ns;
+				MDRout_tb <= '1', '0' after 35ns;
 			WHEN T3 =>
 				R2out_tb <= '1', '0' after 35ns; Yin_tb <= '1', '0' after 35ns;
 			WHEN T4 =>

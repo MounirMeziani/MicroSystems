@@ -16,12 +16,14 @@ END MDmux;
 ARCHITECTURE description OF MDmux IS
 
 BEGIN
-mux : process(mem_read, mem_data_in)
+mux : process(mem_read, mem_data_in,bus_mux_out)
 begin
 
 if mem_read = '1' then
+mem_mux_out <= x"00000000";
 mem_mux_out <= mem_data_in;
 elsif mem_read = '0' then
+mem_mux_out <= x"00000000";
 mem_mux_out <= bus_mux_out;
 end if;
 end process;
